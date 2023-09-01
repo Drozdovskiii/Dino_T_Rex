@@ -1,0 +1,28 @@
+name: Build and Deploy Dino-T Rex Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t my-nginx-app .
+
+      - name: Log into Docker Hub
+        run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker tag my-nginx-app igordrozd/dinotrex:v1
+          docker push igordrozd/dinotrex:v1
