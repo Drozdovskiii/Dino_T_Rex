@@ -25,5 +25,5 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: |
-          docker tag my-nginx-app igordrozd/dinotrex:v1
-          docker push igordrozd/dinotrex:v1
+          docker tag my-nginx-app igordrozd/dinotrex:v2
+          docker push igordrozd/dinotrex:v2
