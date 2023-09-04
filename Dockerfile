@@ -2,7 +2,7 @@
 FROM nginx:latest
 
 # Копируем файл "index.html" в папку "usr/share/nginx/html" образа
-COPY /trx_game usr/share/nginx
+COPY /trx_game/. usr/share/nginx
 
 # Этот порт будет слушаться контейнером
 EXPOSE 80
